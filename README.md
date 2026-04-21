@@ -6,10 +6,10 @@ Case studies and artifacts from my work on business process analysis, systems an
 
 ## About
 
-Hi, I'm **[Your Name]** — Business Analyst based in Gdańsk, Poland. I work on data and analytics products in digital media, turning stakeholder needs into working specifications and structured models.
+Hi, I'm **Adam Rog** — Business Analyst based in Gdańsk, Poland. I work on data and analytics products in digital media, turning stakeholder needs into working specifications and structured models.
 
-- LinkedIn — [linkedin.com/in/your-handle](https://linkedin.com/in/your-handle)
-- Contact — [your.email@example.com](mailto:your.email@example.com)
+- LinkedIn — [linkedin.com/in/adam-rog/](https://www.linkedin.com/in/adam-rog/)
+- Contact — [adamrog6@gmail.com](mailto:adamrog6@gmail.com)
 
 Most case studies are set in **fictional domains** to respect confidentiality while demonstrating real analytical approach and decision-making.
 
