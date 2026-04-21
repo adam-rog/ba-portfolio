@@ -1,0 +1,40 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Drafts / work in progress
+_drafts/
+*.draft.md
+*.wip.*
+
+# Temporary / backup
+*.tmp
+*.bak
+*.orig
+
+# draw.io local backups
+*.drawio.bkp
+
+# BPMN modeler temp
+.camunda/
+
+# Generated outputs
+out/
+dist/
+node_modules/
+
+# Secrets (never commit)
+.env
+.env.*
+*.key
+*.pem
+secrets/
