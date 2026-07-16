@@ -1,0 +1,149 @@
+openapi: 3.0.3
+
+info:
+  title: Comments API
+  description: API do zarządzania komentarzami pod artykułami WP
+  version: 1.0.0
+
+servers:
+  - url: https://api.wp.pl/v1
+    description: Production
+
+paths:
+  /articles/{articleId}/comments:
+    get:
+      summary: Lista komentarzy artykułu
+      parameters:
+        - name: articleId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Lista komentarzy artykułu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '404':
+          description: Artykuł nie istnieje
+    post:
+      summary: Dodaj komentarz
+      parameters:
+        - name: articleId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+      responses:
+        '201':
+          description: Komentarz utworzony
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          description: Artykuł nie istnieje
+
+  /comments/{commentId}:
+    get:
+      summary: Pobierz jeden komentarz
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Znaleziono komentarz
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          description: Komentarz nie istnieje
+    patch:
+      summary: Edytuj komentarz
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Komentarz zaktualizowany
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          description: Komentarz nie istnieje
+    delete:
+      summary: Usuń komentarz
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Komentarz usunięty
+        '404':
+          description: Komentarz nie istnieje
+
+components:
+  schemas:
+    Comment:
+      type: object
+      required:
+        - id
+        - content
+        - author_id
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        author_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
