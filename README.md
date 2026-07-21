@@ -32,7 +32,7 @@ Mapping of artifacts to skills (updated as portfolio grows):
 | Skill | Case studies / samples |
 |------|------------------------|
 | BPMN 2.0 (AS-IS / TO-BE modeling) | _case 01_ |
-| Requirements Engineering (user stories, acceptance criteria) | _coming_ |
+| Requirements Engineering (user stories, acceptance criteria) | [loan-application](https://github.com/adam-rog/ba-portfolio/tree/main/requirements-samples/loan-application) |
 | REST API Specification (OpenAPI) | [comments-api](https://github.com/adam-rog/ba-portfolio/blob/main/requirements-samples/comments-api/comments-api.yaml) |
 | UML (Use Case, Sequence, State Machine) | _coming_ |
 | SQL-based business analysis | [editorial-engagement](https://github.com/adam-rog/ba-portfolio/blob/main/sql-analyses/editorial-engagement/editorial-engagement-analysis.sql) |
