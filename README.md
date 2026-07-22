@@ -35,7 +35,7 @@ Mapping of artifacts to skills (updated as portfolio grows):
 | Requirements Engineering (user stories, acceptance criteria) | [loan-application](https://github.com/adam-rog/ba-portfolio/tree/main/requirements-samples/loan-application) |
 | REST API Specification (OpenAPI) | [comments-api](https://github.com/adam-rog/ba-portfolio/tree/main/requirements-samples/loan-application) |
 | UML (Use Case, Sequence, State Machine) | _coming_ |
-| SQL-based business analysis | [editorial-engagement](https://github.com/adam-rog/ba-portfolio/tree/main/sql-analyses/loan-portfolio) |
+| SQL-based business analysis | [loan-portfolio](https://github.com/adam-rog/ba-portfolio/tree/main/sql-analyses/loan-portfolio) |
 | Stakeholder communication | _coming_ |
 
 ---
