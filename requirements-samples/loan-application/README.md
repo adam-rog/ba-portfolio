@@ -108,36 +108,66 @@ end-to-end, rather than a technical layer.
 
 ---
 
-## 5. Acceptance Criteria (sample)
+## 5. Acceptance Criteria
 
-Acceptance criteria are shown for two representative stories: one driven by a
-business rule (Story 5) and one unhappy path (Story 9). Format: Given / When / Then.
+Full acceptance criteria for Story 5 (the scoring decision), covering the happy
+path, the alternative path, boundary conditions, and error cases. Format:
+Given / When / Then. Business rule: **credit score >= 80 → auto-approve;
+below 80 → manual review.**
 
-### Story 5 — credit score decision
+### Story 5 — automatic scoring decision
 
-```
-Scenario 1: Low-risk application is auto-approved
+```gherkin
+# HAPPY PATH — auto-approval
+Scenario: High score is auto-approved
   Given a submitted application with all required data
-  When the credit score is calculated and is >= 80
+  When the credit score is calculated and is above 80
   Then the application is marked as low-risk
   And it is approved automatically
 
-Scenario 2: Borderline application goes to manual review
+# BOUNDARY — exactly at the threshold
+Scenario: Score exactly at the threshold is approved
   Given a submitted application with all required data
-  When the credit score is calculated and is below 80
+  When the credit score is exactly 80
+  Then the application is approved automatically
+  # (rule is ">= 80", so 80 must pass — this pins down >= vs >)
+
+# BOUNDARY — just below the threshold
+Scenario: Score just below the threshold goes to review
+  Given a submitted application with all required data
+  When the credit score is exactly 79
+  Then the application is sent to manual review
+  And it is not approved automatically
+
+# ALTERNATIVE PATH — manual review
+Scenario: Below-threshold score is routed to an analyst
+  Given a submitted application with all required data
+  When the credit score is below 80
   Then the application is marked for manual review
   And it is routed to a credit risk analyst
+
+# ERROR CASE — score unavailable
+Scenario: Missing credit score blocks the decision
+  Given a submitted application for which no credit score could be calculated
+  When the automatic decision step runs
+  Then the application is not auto-approved
+  And it is routed to manual review with a flag "score unavailable"
 ```
 
-### Story 9 — input validation
+### Story 9 — input validation (error case)
 
-```
-Scenario: Invalid data blocks submission
+```gherkin
+Scenario: Invalid PESEL blocks submission
   Given I am a customer filling in the loan application form
   When I enter a PESEL number that is too short
   Then the system displays a validation error
   And the form cannot be submitted until it is corrected
 ```
+
+*Note on boundary testing:* for any rule with a limit (age >= 18, amount in
+1000–50000, score >= 80), the criteria test **both sides of each boundary** —
+e.g. score 79 (review) and 80 (approve) — because that is where off-by-one
+errors (`<` vs `<=`) hide, not in the middle of the range.
 
 ---
 
